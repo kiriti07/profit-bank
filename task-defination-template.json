@@ -1,0 +1,34 @@
+{
+  "family": "your-task-definition-name",
+  "taskRoleArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/your-task-role",
+  "networkMode": "bridge",
+  "containerDefinitions": [
+    {
+      "name": "your-container-name",
+      "image": "$IMAGE_NAME",
+      "memory": 512,
+      "cpu": 256,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/your-log-group",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "environment": [
+        {
+          "name": "ENV_VARIABLE_NAME",
+          "value": "value"
+        }
+      ]
+    }
+  ]
+}
